@@ -2,6 +2,7 @@
 
 * [前言](README.md)
 * [第1章 Elasticsearch 介绍](1-Introduction/README.md)
+  * [数据输入：文档和索引](1-Introduction/data_in_documents_and_indices.md)
 * [第2章 Elasticsearch 启动](2-Get-start/README.md)
 * [第3章 Elasticsearch 配置](3-Set-up/README.md)
 * [第4章 Elasticsearch 更新](4-Upgrade/README.md)
