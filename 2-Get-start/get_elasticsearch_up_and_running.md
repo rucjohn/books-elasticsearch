@@ -16,35 +16,42 @@
 ```
 curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-linux-x86_64.tar.gz
 ```
+
 - macOS: [elasticsearch-7.5.0-darwin-x86_64.tar.gz](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz)
 ```
 curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz
 ```
+
 - Windows: [elasticsearch-7.5.0-windows-x86_64.zip](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-windows-x86_64.zip)
 ```
 powershell -Command "(New-Object Net.WebClient).DownloadFile('"https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-windows-x86_64.zip"', '"elasticsearch-7.5.0-windows-x86_64.zip"')"
 ```
 
 2. 解压
+
 - Linux
 ```
 tar zxvf elasticsearch-7.5.0-linux-x86_64.tar.gz
 ```
+
 - macOS
 ```
 tar zxvf elasticsearch-7.5.0-darwin-x86_64.tar.gz
 ```
+
 - Windows
 ```
 Expand-Archive elasticsearch-7.5.0-windows-x86_64.zip
 ```
 
 3. 启动
+
 - Linux and macOS
 ```
 cd elasticsearch-7.5.0/bin
 ./elasticsearch
 ```
+
 - Windows
 ```
 cd elasticsearch-7.5.0\bin
@@ -53,16 +60,19 @@ cd elasticsearch-7.5.0\bin
 单节点 Elasticsearch 集群启动
 
 4. 再启动两个 Elasticsearch 实例，这样就可以看到典型的多节点集群。需要为每个节点指定唯一的数据和日志路径。
+
 - Linux and macOS
 ```
 ./elasticsearch -Epath.data=data2 -Epath.logs=log2
 ./elasticsearch -Epath.data=data3 -Epath.logs=log3
 ```
+
 - Windows
 ```
 .\elasticsearch.bat -E path.data=data2 -E path.logs=log2
 .\elasticsearch.bat -E path.data=data3 -E path.logs=log3
 ```
+
 它们会自动与集群中的第一个节点连接起来。
 
 5. 使用 cat health API 验证三节点集群是否运行。cat APIs 以比原始JSON更容易展示的格式返回有关集群和索引的信息。
