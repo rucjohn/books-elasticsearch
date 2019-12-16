@@ -59,7 +59,9 @@ cd elasticsearch-7.5.0\bin
 ```
 单节点 Elasticsearch 集群启动
 
-### 4. 再启动两个 Elasticsearch 实例，这样就可以看到典型的多节点集群。需要为每个节点指定唯一的数据和日志路径。
+### 4. 再启动两个实例
+
+这样就可以看到典型的多节点集群。需要为每个节点指定唯一的数据和日志路径。
 
 - Linux and macOS
 ```
@@ -75,7 +77,9 @@ cd elasticsearch-7.5.0\bin
 
 它们会自动与集群中的第一个节点连接起来。
 
-### 5. 使用 cat health API 验证三节点集群是否运行。cat APIs 以比原始JSON更容易展示的格式返回有关集群和索引的信息。
+### 5. 验证
+
+使用 cat health API 验证三节点集群是否运行。cat APIs 以比原始JSON更容易展示的格式返回有关集群和索引的信息。
 
 通过向 Elasticsearch REST API 提交 HTTP 请求，可以直接与集群交互。本指南中的大多数示例能够直接复制 `CURL` 命令并执行。如果您已经安装并运行了 Kibana，还可以打开 Kinaba 的 Dev 控制台提交请求。
 ```
