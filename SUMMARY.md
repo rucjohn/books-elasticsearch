@@ -12,6 +12,7 @@
   * [使用聚合分析结果](./2-Get-start/analyze_results_with_aggregations.md)
 * [第3章 Elasticsearch 设置](./3-Set-up/README.md)
   * [安装 Elasticsearch](./3-Set-up/installing_elasticsearch/README.md)
+    * [Linux 或 macOS 安装方式](./3-Set-up/installing_elasticsearch/install_elasticsearch_from_archive_on_linux_or_macos.md)
   * [配置 Elasticsearch](./3-Set-up/configuring_elasticsearch/README.md)
   * [重要的 Elasticsearch 配置信息](./3-Set-up/important_elasticsearch_configuration/README.md)
   * [重要的系统配置信息](./3-Set-up/important_system_configuration/README.md)
