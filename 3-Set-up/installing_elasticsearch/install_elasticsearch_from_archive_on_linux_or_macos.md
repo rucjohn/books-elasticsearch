@@ -142,7 +142,7 @@ GET /
 
 可以使用命令行上的 `-q` 或 `--quiet` 选项禁止输出`stdout`
 
-# 启动一个daemon
+## 启动一个daemon
 
 要将 Elasticsearch 作为守护进程运行，请在命令行中指定 `-d`，并使用 `-p` 选项将进程ID记录在文件中
 ```
