@@ -67,4 +67,43 @@ GET /
 
 可以使用命令行上的 `-q` 或 `--quiet` 选项禁止输出`stdout`
 
+## 启动一个daemon
+
+要将 Elasticsearch 作为守护进程运行，请在命令行中指定 `-d`，并使用 `-p` 选项将进程ID记录在文件中
+```
+./bin/elasticsearch -d -p pid
+```
+日志消息会存储在 `$ES_HOME/logs/` 目录下
+
+要关闭 Elasticsearch，`kill` 记录在 `pid` 文件中的进程ID：
+```
+pkill -F pid
+```
+
+## 命令行配置 Elasticsearch
+
+默认情况下，Elasticsearch 从 `$ES_HOME/config/elasticsearch.yml` 文件中加载配置。
+
+配置文件中的设置同样也可以在命令行中指定，使用 `-E` 选项：
+```
+./bin/elasticsearch -d -Ecluster.name=my_cluster -Enode.name=node_1
+```
+
+> 注意：通常，任何集群相关的设置（如 `cluster.name`）应该添加到 `elasticsearch.yml` 文件中，节点相关的设置（如 `node.name`）可以命令行上指定。
+
+## 目录布局
+
+分发版本的压缩包是完全独立的。默认情况下，所有文件和目录都应包含在 `$ES_HOME` --- 解压缩包时创建的目录中。
+
+这非常方便，因为您不必创建任何其他目录就可以使用 Elasticsearch，卸载 Elasticsearch 就和删除目录一样简单。建议更改配置目录、数据目录和日志目录的默认位置，以便以后不会删除重要数据。
+
+Type | Description | Default Location | Setting
+--- | --- | --- | ---
+home | Elasticsearch 主目录，或 `$ES_HOME` | 解压时创建 | 
+bin | 二进制脚本，包括用于启动节点的 `elasticsearch` 和用于安装插件的 `elasticsearch-plugin` | `$ES_HOME/bin`
+conf | 配置文件，包含有 `elasticsearch.yml` | `$ES_HOME/config`
+data | 在节点上分配的每个索引 / 分片的数据文件的路径。可以有多个路径 | `$ES_HOME/data` | path.data
+logs | 日志文件位置 | `$ES_HOME/logs` | path.logs
+plugins | 插件文件位置。每个插件都将包含在一个子目录中。 | `$ES_HOME/plugins` |
+repo | 共享文件系统存储库位置。可以有多个路径。文件系统存储库可以放在任意目录下。 |  | path.repo
 
