@@ -28,4 +28,43 @@ tar -xzf elasticsearch-7.5.0-linux-x86_64.tar.gz
 cd elasticsearch-7.5.0/
 ```
 
+## 下载 macOS 压缩包
+```
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz.sha512
+shasum -a 512 -c elasticsearch-7.5.0-darwin-x86_64.tar.gz.sha512 
+tar -xzf elasticsearch-7.5.0-darwin-x86_64.tar.gz
+cd elasticsearch-7.5.0/ 
+```
+
+## 检查 Elasticsearch 运行情况
+
+可以通过 `localhost` 的 `9200` 端口发送 HTTP 请求来测试您的 Elasticsearch 节点是否正在运行：
+```
+GET /
+```
+
+应该会有如下响应：
+```
+{
+  "name" : "Cp8oag6",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "AT69_T_DTp-1qgIJlatQqA",
+  "version" : {
+    "number" : "7.5.0",
+    "build_flavor" : "default",
+    "build_type" : "tar",
+    "build_hash" : "f27399d",
+    "build_date" : "2016-03-30T09:51:41.449Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.3.0",
+    "minimum_wire_compatibility_version" : "1.2.3",
+    "minimum_index_compatibility_version" : "1.2.3"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+
+可以使用命令行上的 `-q` 或 `--quiet` 选项禁止输出`stdout`
+
 
