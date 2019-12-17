@@ -70,39 +70,91 @@ GET /bank/_search
 - `hits.sort` - 文档的排序（不按相关性分数排序时）
 - `hits._score` - 文档的相关性分数（使用 `match_all` 时不适合 ）
 
+每个搜索请求包含：Elasticsearch 不在请求间维护任何状态信息。要浏览搜索结果，请在请求中指向 `from` 和 `size` 参数。
 
+例如，以下请求的命中率为 10 到 19：
+```
+{
+	"query": {
+		"match_all": {}
+	},
+	"sort": [
+		{
+			"account_number": "asc"
+		}
+	],
+	"from": 10,
+	"size": 10
+}
+```
 
+既然您已经了解了如何提交基本的搜索请求，就可以开始构造比 `match_all` 更有趣的查询。
 
+在一个字段中搜索特定字符，可以使用 `match` 查询。例如，在 `address` 字段中查找包含有 `mill` 或 `lane` 的地址的客户。
+```
+GET /bank/_search
+{
+	"query": {
+		"match": {
+			"address": "mill lane"
+		}
+	}
+}
+```
 
+如果要执行短语搜索而不是匹配单词，可以使用 `match_phrase` 代替 `match`。例如，匹配包含短语 `mill lane` 的地址。
+```
+GET /bank/_search
+{
+	"query": {
+		"match_phrase": {
+			"address": "mill lane"
+		}
+	}
+}
+```
 
+要构造更复杂的查询，可以使用 `bool` 查询组合多个查询条件。您可以根据"必须匹配"、"应该匹配"或"必须不匹配"来指定条件。
 
+例如，在 `bank` 索引中搜索客户岁数40岁，但不住在 `Idaho (ID)` 的帐户。
+```
+GET /bank/_search
+{
+	"query": {
+		"bool": {
+			"must": [
+				{"match": {"age": "40"}}
+			],
+			"must_not": [
+				{"match": {"state": "ID"}}
+			]
+		}
+	}
+}
+```
 
+在 `bool` 查询中每个 `must`、`should`、`must_not` 元素都称为查询子句。文档满足每个 `must` 或 `should` 子句中的标准的程序有助于文档的相关性得分。分数越高，文档就越符合您的搜索条件。默认情况下，Elasticsearch 返回按相关性得分排序的文档。
 
+`must_not` 子句中的条件被视为筛选器。它影响文档是否包含在结果中，但不影响文档的评分方式。您还可以显示地指定什么任意过滤器，以包含或排除基于结构化数据的文档。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+例如，使用范围筛选器将结果限制在余额为 20000 到 30000（含） 美元之间的帐户。
+```
+GET /bank/_search
+{
+	"query": {
+		"bool": {
+			"must": {
+				"match_all": {}
+			},
+			"filter": {
+				"range": {
+					"balance": {
+						"gte": 20000,
+						"lte": 30000
+					}
+				}
+			}
+		}
+	}
+}
+```
