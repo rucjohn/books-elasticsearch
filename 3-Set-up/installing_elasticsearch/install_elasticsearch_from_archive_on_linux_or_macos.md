@@ -168,8 +168,9 @@ SuccessExitStatus=143
 WantedBy=multi-user.target
 ```
 
-加载服务
+配置权限并加载服务
 ```
+chmod +x /usr/lib/systemd/system/elasticsearch.service
 systemctl daemon-reload
 ```
 
