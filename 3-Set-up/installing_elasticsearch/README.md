@@ -10,5 +10,5 @@ Elasticsearch 提供了以下的包格式：
 
 格式 | description
 --- | ---
-tar.gz | `tar.gz` 压缩包可以在任何 Linux 发行版和 macOS 上安装。\n [Install Elasticsearch from archive on Linux or macOS](https://rucjohn.gitbook.io/elasticsearch/3-Set-up/installing_elasticsearch/install_elasticsearch_from_archive_on_linux_or_macos)
+tar.gz | `tar.gz` 压缩包可以在任何 Linux 发行版和 macOS 上安装。<br> [Install Elasticsearch from archive on Linux or macOS](./installing_elasticsearch/install_elasticsearch_from_archive_on_linux_or_macos.md)
 
