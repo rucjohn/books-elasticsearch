@@ -37,6 +37,12 @@ tar -xzf elasticsearch-7.5.0-darwin-x86_64.tar.gz
 cd elasticsearch-7.5.0/ 
 ```
 
+## 命令行启动 Elasticsearch
+```
+./bin/elasticsearch
+```
+默认情况下，Elasticsearch 在前台运行，将其日志打印到标准输出（stdout），并可以通过 `Ctrl+C` 停止。
+
 ## 检查 Elasticsearch 运行情况
 
 可以通过 `localhost` 的 `9200` 端口发送 HTTP 请求来测试您的 Elasticsearch 节点是否正在运行：
@@ -106,4 +112,73 @@ data | 在节点上分配的每个索引 / 分片的数据文件的路径。可�
 logs | 日志文件位置 | `$ES_HOME/logs` | path.logs
 plugins | 插件文件位置。每个插件都将包含在一个子目录中。 | `$ES_HOME/plugins` |
 repo | 共享文件系统存储库位置。可以有多个路径。文件系统存储库可以放在任意目录下。 |  | path.repo
+
+
+## 服务方式启动 Elasticsearch
+
+使用服务方式启动 Elasticsearch，目前只支持 CentOS/RedHat 7 以上版本。
+
+创建用于启动 elasticsearch 程序的用户
+```
+useradd -M -s /sbin/nologin elasticsearch
+```
+> 尽量不要使用 `root` 用户启动程序，可以自定义的用户，如 `elasticsearch` 用户，也可以使用系统自带的 `nobody` 用户。
+> 如何使用 `nobody` 用户，以下示例中涉及用户、分组和权限的部分，则需要相对应进行更改。
+
+将 elasticsearch 主目录拷贝至 `/usr/local`，并配置权限
+```
+mv elasticsearch-7.5.0 /usr/local/elasticsearch
+chown -R elasticsearch.elasticsearch /usr/local/elasticsearch
+```
+
+创建服务文件 `/usr/lib/systemd/system/elasticsearch.service`
+```
+[Unit]
+Description=Elasticsearch 7.5.0
+Documentation=http://www.elastic.co
+Wants=network-online.target
+After=etwork-online.target
+
+[Service]
+RuntimeDirectory=elasticsearch
+PrivateTmp=true
+Environment=JAVA_HOME=/usr/local/jdk
+Environment=ES_HOME=/usr/local/elasticsearch
+Environment=ES_PATH_CONF=/usr/local/elasticsearch/config
+Environment=PID_DIR=/tmp
+WorkingDirectory=/usr/local/elasticsearch
+User=elasticsearch
+Group=elasticsearch
+ExecStart=/usr/local/elasticsearch/bin/elasticsearch -p ${PID_DIR}/elasticsearch.pid --quiet
+StandardOutput=journal
+StandardError=inherit
+LimitNOFILE=655350
+LimitNPROC=4096
+LimitAS=infinity
+LimitFSIZE=infinity
+LimitMEMLOCK=infinity
+TimeoutStopSec=0
+KillSignal=SIGTERM
+KillMode=process
+SendSIGKILL=no
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+```
+
+加载服务
+```
+systemctl daemon-reload
+```
+
+启动服务
+```
+systemctl start elasticsearch
+```
+
+使用以下命令查看服务启动情况
+```
+systemctl status elasticsearch
+```
 
