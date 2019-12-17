@@ -123,6 +123,7 @@ repo | 共享文件系统存储库位置。可以有多个路径。文件系统�
 useradd -M -s /sbin/nologin elasticsearch
 ```
 > 尽量不要使用 `root` 用户启动程序，可以自定义的用户，如 `elasticsearch` 用户，也可以使用系统自带的 `nobody` 用户。
+
 > 如何使用 `nobody` 用户，以下示例中涉及用户、分组和权限的部分，则需要相对应进行更改。
 
 将 elasticsearch 主目录拷贝至 `/usr/local`，并配置权限
