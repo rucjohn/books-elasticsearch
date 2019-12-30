@@ -15,5 +15,5 @@ network.host: 0.0.0.0
 
 `network.host` 设置还需再了解一些特殊值，如 `_local_`, `_site_`, `_global_` ，以及像 `:ip4` 和 `:ip6` 配置，详细信息可以参考 [Special values for network.host](https://rucjohn.gitbook.io/elasticsearch/5-Aggregations/modules/network_settings)
 
-> 一旦为 `network.host` 提供了自定义设置，Elasticsearch 就会假设您正在从开发模式转到生产模式，并将许多系统启动检查从 warning 升级到 exception。有关详细信息，请参见 [Development mode vs production mode](https://rucjohn.gitbook.io/elasticsearch/3-set-up/important_system_configuration)
+> 重要：一旦为 `network.host` 提供了自定义设置，Elasticsearch 就会假设您正在从开发模式转到生产模式，并将许多系统启动检查从 warning 升级到 exception。有关详细信息，请参见 [Development mode vs production mode](https://rucjohn.gitbook.io/elasticsearch/3-set-up/important_system_configuration)
 
