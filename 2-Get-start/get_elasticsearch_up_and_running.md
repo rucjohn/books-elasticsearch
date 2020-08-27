@@ -93,10 +93,32 @@ epoch      timestamp cluster       status node.total node.data shards pri relo i
 
 > 如果只有单实例 Elasticsearch，集群状态为黄色。单个节点集群也能完全正常工作，但无法将数据复制到另一个节点。副本分片必须可用，集群状态才能是绿色。如果集群状态是红色，则表示某些数据不可用。
 
+
+## 使用 cURL 命令与 Elasticsearch 交互
+
+本指南中的大多数示例能够复制适当的 cURL 命令并将请求从命令行提交到本地 Elasticsearch 实例。
+
+Elasticsearch 请求与 HTTP 请求相同的部分：
+```bash
+curl -X<VERB> '<PROTOCOL>://<HOST>:<PORT>/<PATH>?<QUERY_STRING>' -d '<BODY>'
+```
+
+示例中使用的变量：
+- `<VERB>`: HTTP方法。例如 `GET`、`POST`、`PUT`、`HEAD` 或 `DELETE`。
+- `<PROTOCOL>`: HTTP协议。例如 `http` 或 `https`。
+- `<HOST>`: Elasticsearch 集群中任何节点的主机名，或者 `localhost` 和 `127.0.0.1`。
+- `<PORT>`: 运行 Elasticsearch HTTP服务的端口。例如 `9200`。
+- `<PATH>`: API 节点，可以包含多个组件。例如，`_cluster/stats` 或 `_nodes/stats/jvm`。
+- `<QUERY_STRING>`: 任何可选的查询字符串参数。例如，`?pretty` 将 JSON 数据格式化输出以便更易于阅读。
+- `<BODY>`: JSON 编码的请求正文（如有必要）。
+
+如果启用了 Elasticsearch 安全功能，则还必须提供有权限运行 API 的有效用户名和密码。例如，使用 `-u` 或 `--u` cURL 命令参数。有关运行每个 API 所需的安全特权的详细信息，请参阅 [REST API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html)
+
+Elasticsearch 使用 HTTP 状态码响应每个 API 请求。例如 `200` OK。除 `HEAD` 请求外，它还返回 JSON 编码的响应正文。
+
 ## 其它安装选项
 
 通过压缩包安装 Elasticsearch，您可以轻松地在本地安装和运行多个实例。要运行单个实例，可以在 Docker 容器中运行 Elasticsearch，在 Linux 上使用 DEB 或 RPM 软件包安装 Elasticsearch，在 macOS 上使用自制软件安装，或在 Windows 上使用 MSI 软件包安装程序。有关详细信息，请参见 [安装 Elasticsearch](https://rucjohn.gitbook.io/elasticsearch/2-Set-up/installing_elasticsearch)
-
 
 
 
