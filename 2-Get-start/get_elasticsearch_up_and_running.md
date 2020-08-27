@@ -12,49 +12,49 @@
 
 ### 1. 下载
 
-- Linux: [elasticsearch-7.5.0-linux-x86_64.tar.gz](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-linux-x86_64.tar.gz)
+- Linux: `elasticsearch-7.9.0-linux-x86_64.tar.gz`
 ```
-curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-linux-x86_64.tar.gz
-```
-
-- macOS: [elasticsearch-7.5.0-darwin-x86_64.tar.gz](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz)
-```
-curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-darwin-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-linux-x86_64.tar.gz
 ```
 
-- Windows: [elasticsearch-7.5.0-windows-x86_64.zip](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-windows-x86_64.zip)
+- macOS: `elasticsearch-7.9.0-darwin-x86_64.tar.gz`
 ```
-powershell -Command "(New-Object Net.WebClient).DownloadFile('"https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.0-windows-x86_64.zip"', '"elasticsearch-7.5.0-windows-x86_64.zip"')"
+curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-darwin-x86_64.tar.gz
+```
+
+- Windows: `elasticsearch-7.9.0-windows-x86_64.zip`
+```
+powershell -Command "(New-Object Net.WebClient).DownloadFile('"https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-windows-x86_64.zip"', '"elasticsearch-7.9.0-windows-x86_64.zip"')"
 ```
 
 ### 2. 解压
 
 - Linux
 ```
-tar zxvf elasticsearch-7.5.0-linux-x86_64.tar.gz
+tar zxvf elasticsearch-7.9.0-linux-x86_64.tar.gz
 ```
 
 - macOS
 ```
-tar zxvf elasticsearch-7.5.0-darwin-x86_64.tar.gz
+tar zxvf elasticsearch-7.9.0-darwin-x86_64.tar.gz
 ```
 
 - Windows
 ```
-Expand-Archive elasticsearch-7.5.0-windows-x86_64.zip
+Expand-Archive elasticsearch-7.9.0-windows-x86_64.zip
 ```
 
 ### 3. 启动
 
 - Linux and macOS
 ```
-cd elasticsearch-7.5.0/bin
+cd elasticsearch-7.9.0/bin
 ./elasticsearch
 ```
 
 - Windows
 ```
-cd elasticsearch-7.5.0\bin
+cd elasticsearch-7.9.0\bin
 .\elasticsearch.bat
 ```
 单节点 Elasticsearch 集群启动
