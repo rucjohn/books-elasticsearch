@@ -1,10 +1,10 @@
 # Table of contents
 
 * [前言](README.md)
-* [第1章 Elasticsearch 介绍](./1-Introduction/README.md)
-  * [数据输入：文档和索引](./1-Introduction/data_in_documents_and_indices.md)
-  * [信息输出：查询和分析](./1-Introduction/information_out_search_and_analyze.md)
-  * [可伸缩性和弹性：集群、节点和分片](./1-Introduction/scalability_and_resilience_clusters_nodes_and shards.md)
+* [第1章 Elasticsearch 介绍](1-What-is-Elasticsearch?/README.md)
+  * [数据输入：文档和索引](1-What-is-Elasticsearch?/data_in_documents_and_indices.md)
+  * [信息输出：查询和分析](1-What-is-Elasticsearch?/information_out_search_and_analyze.md)
+  * [可伸缩性和弹性：集群、节点和分片](1-What-is-Elasticsearch?/scalability_and_resilience_clusters_nodes_and shards.md)
 * [第2章 Elasticsearch 启动](2-Get-start/README.md)
   * [安装与运行](./2-Get-start/get_elasticsearch_up_and_running.md)
   * [索引文档](./2-Get-start/index_some_documents.md)
